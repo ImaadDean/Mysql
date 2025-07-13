@@ -29,7 +29,6 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          cd simple-php-site
-          docker-compose down
-          docker-compose up -d --build
-          
+          cd /home/ubuntu/simple-php-site
+          docker compose down
+          docker compose up -d --build
