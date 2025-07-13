@@ -30,5 +30,6 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           cd /home/ubuntu/simple-php-site
-          docker compose down
+          docker stop $(docker ps -q) || true
+          docker rm $(docker ps -aq) || true
           docker compose up -d --build
