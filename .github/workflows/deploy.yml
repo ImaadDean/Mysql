@@ -29,7 +29,9 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
+          set -e
           cd /home/ubuntu/simple-php-site
-          docker stop $(docker ps -q) || true
-          docker rm $(docker ps -aq) || true
+          # Stop and remove existing containers of this project only
+          docker compose down
+          # Build and start containers in detached mode
           docker compose up -d --build
